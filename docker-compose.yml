@@ -1,0 +1,48 @@
+version: '3.4'
+
+networks:
+  frontend:
+  backend:
+
+services:
+  dynamicbuild.api:
+    image: ${DOCKER_REGISTRY-}dynamicbuildapi
+    build:
+      context: .
+      dockerfile: DynamicBuild.API/Dockerfile
+
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development 
+      - SQLSERVER_HOST=mssqlserver
+      - SA_PASSWORD=BuildWord!123
+      - DATABASE=DynamicBuildDb
+    container_name: dynamicbuildapi
+    ports:
+      - "80"
+      - "443"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mssqlserver
+
+  mssqlserver:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: mssqldata
+    ports:
+      - "1402:1433" 
+    networks:
+      - backend
+    environment:
+      - SA_PASSWORD=BuildWord!123
+      - ACCEPT_EULA="Y"
+    volumes:
+      - ./containers/DynamicBuildDb-db:/var/opt/mssql/data
+  buildseq:
+    image: datalust/seq:latest
+    container_name: buildseq
+    environment:
+     - ACCEPT_EULA=Y
+    ports:
+     - 5341:5341
+     - 8081:80
