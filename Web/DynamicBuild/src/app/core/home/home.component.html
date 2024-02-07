@@ -1,0 +1,56 @@
+<div class="grid">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="card p-4" style="width: 73rem;">
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="wordTypes">Select Word Type</label>
+                    <p-dropdown [options]="wordTypeDropdownItems" optionLabel="name" (onChange)="onTypeChange($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="selectWord">Select Word</label>
+                    <p-dropdown [options]="wordDropdownItems" optionLabel="name" (onChange)="addWord()" [(ngModel)]="selectedWord"></p-dropdown>
+                </div>
+                <div class="field col-12">
+                    <label htmlFor="sentence">Sentence</label>
+                    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="sentence"></textarea>
+                </div>
+                <div class="field col-12 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" (click)="submitSentence()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="card p-4">
+          <p-table id="sentenceid" [value]="sentences" [paginator]="true" [rows]="rows"
+                   [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '70rem' }"
+                   [currentPageReportTemplate]="currentPageReportTemplate"
+                   (onPage)="pageChange($event)" [rowsPerPageOptions]="[2, 25, 50]">
+            <ng-template pTemplate="caption">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <div class="sentences-title">Sentences</div>
+                        </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:50%">Guid ID</th>
+                <th style="width:50%">Sentence</th>
+                <th style="width:50%">Date Created</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-sentence>
+              <tr>
+                <td>{{ sentence.id }}</td>
+                <td>{{ sentence.content }}</td>
+                <td>{{ sentence.createdAt | date:'dd/MM/yyyy' }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+</div>
+
+
+

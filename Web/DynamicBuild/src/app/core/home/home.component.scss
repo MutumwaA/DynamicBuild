@@ -1,0 +1,16 @@
+.p-card {
+    margin-top: 1rem;
+}
+
+:host ::ng-deep {
+    #sentenceid {
+      .p-datatable-header {
+        background-color:#0b5ed7;
+      }
+    }
+  }
+
+.sentences-title {
+    color: white;
+}
+  
