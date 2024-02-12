@@ -3,9 +3,9 @@
         <div class="card p-4" style="width: 73rem;">
             <div class="p-fluid p-formgrid grid">
                 <div class="field col-12 md:col-6">
-                    <label htmlFor="wordTypes">Select Word Type</label>
-                    <p-dropdown [options]="wordTypeDropdownItems" optionLabel="name" (onChange)="onTypeChange($event)"></p-dropdown>
-                </div>
+                  <label htmlFor="wordTypes">Select Word Type</label>
+                  <p-dropdown [options]="wordTypeDropdownItems" optionLabel="name" (onChange)="onTypeChange($event)" [(ngModel)]="selectedWordType"></p-dropdown>
+              </div>
                 <div class="field col-12 md:col-6">
                     <label htmlFor="selectWord">Select Word</label>
                     <p-dropdown [options]="wordDropdownItems" optionLabel="name" (onChange)="addWord()" [(ngModel)]="selectedWord"></p-dropdown>

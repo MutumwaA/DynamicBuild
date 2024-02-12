@@ -39,6 +39,7 @@ isFirstPage(): boolean {
 
   selectedWord: any = '';
   sentence: string = '';
+  selectedWordType: any = '';
 
   wordTypeDropdownItems: WordTypeDropdownItem[] = [];
   wordDropdownItems: WordDropdownItem[] = [];

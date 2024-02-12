@@ -17,13 +17,18 @@ namespace DynamicBuild.API.Extensions
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            //var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "mssqlserver";
+            //var password = Environment.GetEnvironmentVariable("SA_PASSWORD") ?? "BuildWord!123";
+            //var database = Environment.GetEnvironmentVariable("DATABASE") ?? "DynamicBuildDb";
+
             var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "mssqlserver";
-            var password = Environment.GetEnvironmentVariable("SA_PASSWORD") ?? "BuildWord!123";
+            var password = Environment.GetEnvironmentVariable("SA_PASSWORD") ?? "DevAgain!1";
             var database = Environment.GetEnvironmentVariable("DATABASE") ?? "DynamicBuildDb";
 
             //var connectionString = $"Server={hostname};Database={database};User ID=sa;Password={password};";
 
-            var connectionString = "Server=mssqlserver;Database=DynamicBuildDb;User ID=sa;Password=BuildWord!123;Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
+            //var connectionString = "Server=mssqlserver;Database=DynamicBuildDb;User ID=sa;Password=BuildWord!123;Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
+            var connectionString = "Server=tcp:runninghilltest.database.windows.net,1433;Initial Catalog=DynamicBuildDb;Persist Security Info=False;User ID=runninghilltest;Password=DevAgain!1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             //var connectionString = "Server=mssqlserver;Database=DynamicBuildDb;User ID=sa;Password=BuildWord!123;Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
 
             services.AddDbContext<DataContext>(options =>
